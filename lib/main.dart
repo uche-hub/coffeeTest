@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 //TODO: Uncomment the setState() function to clear the price and cups
                 //TODO: Change the 'price' to 0 when this button is clicked
                 setState(() {
-                  this.price = -1;
+                  this.price = 0;
                   this._cupsCounter =0;
                  });
               },

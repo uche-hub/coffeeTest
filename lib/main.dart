@@ -1,3 +1,4 @@
+import 'package:coffeetest/views/home_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: MyHomePage(title: 'Coffee Test'),
+      home: HomeView()
     );
   }
 }

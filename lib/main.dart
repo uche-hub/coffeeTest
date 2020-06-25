@@ -21,9 +21,15 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
 
-  final String title;
+  /// Call List to pass to detail page
+  final String coffeeName;
+  final String coffeePrice;
+  final String coffeeImage;
+
+  const MyHomePage(
+      {Key key, this.coffeeName, this.coffeePrice, this.coffeeImage})
+      : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -105,12 +111,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       alignment: Alignment.center,
                       width: double.maxFinite,
                       height: 350,
-                      child: Image.asset("images/cup_of_coffee.png", height: 300,),
+                      child: Image.asset(widget.coffeeImage, height: 300,),
                     )
                   ],
                 )),
             Padding(padding: EdgeInsets.all(10),),
-            Expanded(flex: 0,child: Text("Caffè Americano",
+            Expanded(flex: 0,child: Text(widget.coffeeName,
               style: TextStyle(fontWeight: FontWeight.bold,
                   fontSize: 30),)),
             Padding(padding: EdgeInsets.all(6),),
@@ -141,13 +147,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: EdgeInsets.only(right: 15),
                   ),
                   ListView.builder(itemBuilder: (context, index){
-
+                    /// To display original price
+                    var cupPrice = int.parse(widget.coffeePrice);
                     return InkWell(
                       child: _coffeeSizeButton(_selectedPosition == index,
                           index ==0? "S" : index ==1? "M": "L"),
                       onTap: (){
                         setState(() {
-                          this._coffeePrice= index ==0? "300" : index ==1? "600": "900";
+                          this._coffeePrice= index ==0? "300" : index ==1? "${cupPrice * 2}"
+                              : "${cupPrice * 3}";
                           _selectedPosition = index;
                         });
                       },
@@ -232,7 +240,20 @@ class _MyHomePageState extends State<MyHomePage> {
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
                       alignment: Alignment.center, height: 30, decoration: BoxDecoration(
                     ), ),
-                    _getEstimate(totalPrice, numOfCups)
+                    _getEstimate(totalPrice, numOfCups),
+                    Expanded(
+                      child: FlatButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Billing",
+                          style: TextStyle(color: Colors.black87),
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: BorderSide(color: Colors.blue),
+                        ),
+                      ),
+                    ),
                   ],
                 )),
           );
@@ -245,7 +266,7 @@ class _MyHomePageState extends State<MyHomePage> {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Image.asset("images/cup_of_coffee.png", height: 70, width: 50,),
+        Image.asset(widget.coffeeImage, height: 70, width: 50,),
         Padding(padding: EdgeInsets.all(10)),
         Text(numOfCups, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
         Padding(padding: EdgeInsets.all(10)),

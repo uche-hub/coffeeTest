@@ -22,7 +22,7 @@ class CoffeeCard extends StatelessWidget {
               Container(
                 // margin: EdgeInsets.only(right:15.0),
                 width: 280,
-                height: 380,
+                height: 360,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(
@@ -43,7 +43,7 @@ class CoffeeCard extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 45,
+                bottom: 55,
                 left: 15,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +67,7 @@ class CoffeeCard extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: containerHeight / 90,
+                bottom: containerHeight / 20,
                 right: containerWidth / 15,
                 child: Container(
                   child: Center(

@@ -1,3 +1,0 @@
-class CategoryModel{
-  String categoryName;
-}

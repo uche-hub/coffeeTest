@@ -23,13 +23,9 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
 
   /// Call List to pass to detail page
-  final String coffeeName;
-  final String coffeePrice;
-  final String coffeeImage;
+  MyHomePage({Key key, this.coffee}) : super(key: key);
+  final Coffee coffee;
 
-  const MyHomePage(
-      {Key key, this.coffeeName, this.coffeePrice, this.coffeeImage})
-      : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -39,15 +35,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int _selectedPosition = -1;
 
-  String _coffeePrice ="0";
+  double _coffeePrice = 0.0;
 
-  int _cupsCounter =0;
+  int _cupsCounter = 0;
 
   int price = 0;
 
-  String _currency ="₦";
+  String _currency = "₦";
 
-  static const String coffeeCup ="images/coffee_cup_size.png";
+  String _coffeeCup = "images/coffee_cup_size.png";
+  String _coffeeCupImage = "images/coffee_cup_size.png";
+
+  Coffee _selectedCoffee;
+
+  @override
+  void initState() {
+    this._selectedCoffee = widget.coffee;
+    this._coffeeCup = this._selectedCoffee.url;
+    this._coffeePrice = this._selectedCoffee.price;
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -111,12 +119,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       alignment: Alignment.center,
                       width: double.maxFinite,
                       height: 350,
-                      child: Image.asset(widget.coffeeImage, height: 300,),
+                      child: Image.asset(widget.coffee.url, height: 300,),
                     )
                   ],
                 )),
             Padding(padding: EdgeInsets.all(10),),
-            Expanded(flex: 0,child: Text(widget.coffeeName,
+            Expanded(flex: 0,child: Text(_selectedCoffee.title,
               style: TextStyle(fontWeight: FontWeight.bold,
                   fontSize: 30),)),
             Padding(padding: EdgeInsets.all(6),),
@@ -140,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: TextStyle(fontWeight: FontWeight.bold,
                           fontSize: 25, color: Colors.black87),
                       children: [
-                        TextSpan(text: _coffeePrice, style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold))
+                        TextSpan(text: _currency, style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold))
                       ]
                   ),),
                   Padding(
@@ -148,14 +156,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   ListView.builder(itemBuilder: (context, index){
                     /// To display original price
-                    var cupPrice = int.parse(widget.coffeePrice);
+
                     return InkWell(
                       child: _coffeeSizeButton(_selectedPosition == index,
-                          index ==0? "S" : index ==1? "M": "L"),
-                      onTap: (){
+                          index == 0 ? "S" : index == 1 ? "M" : "L"),
+                      onTap: () {
                         setState(() {
-                          this._coffeePrice= index ==0? "300" : index ==1? "${cupPrice * 2}"
-                              : "${cupPrice * 3}";
+                          this._coffeePrice = index == 0
+                              ? this._selectedCoffee.price
+                              : index == 1
+                              ? (this._selectedCoffee.price * 2)
+                              : (this._selectedCoffee.price * 3);
                           _selectedPosition = index;
                         });
                       },
@@ -182,7 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
                  */
                 setState(() {
                   this._cupsCounter += 1; // i made it +=1 instead of =1.
-                  this.price += int.parse(_coffeePrice);
+                  this.price += _coffeePrice.toInt();
                 });
               }, child: Center(child: Text("Add to Bag",
                 style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),)
@@ -207,7 +218,7 @@ class _MyHomePageState extends State<MyHomePage> {
               color: isSelected? Colors.blue: Colors.black45),),),
         new Container(
           margin: EdgeInsets.only(right: 10),
-          child: Image.asset(coffeeCup, width:50, color: isSelected ? Colors.blue: Colors.black45,),
+          child: Image.asset(_coffeeCupImage, width:50, color: isSelected ? Colors.blue: Colors.black45,),
           decoration: BoxDecoration(border: Border(top: BorderSide(color: isSelected? Colors.blue: Colors.black45,
               width: isSelected? 2: 1), left: BorderSide(color: isSelected? Colors.blue: Colors.black45,
               width: isSelected? 2: 1), bottom: BorderSide(color: isSelected? Colors.blue: Colors.black45,
@@ -266,7 +277,7 @@ class _MyHomePageState extends State<MyHomePage> {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Image.asset(widget.coffeeImage, height: 70, width: 50,),
+        Image.asset("images/cup_of_coffee.png", height: 70, width: 50,),
         Padding(padding: EdgeInsets.all(10)),
         Text(numOfCups, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
         Padding(padding: EdgeInsets.all(10)),

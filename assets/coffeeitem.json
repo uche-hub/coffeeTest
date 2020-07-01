@@ -1,0 +1,73 @@
+{
+	"categories":[{ 
+
+		"name": "Capucinno",
+		"contents": [{
+			"name": "Cappuccino",
+			"subtext" : "Lattesso",
+			"img" : "images/coffee/coffee-1.png",
+			"price": "N100"
+		}],
+		"contents": [{
+			"name": "Caffè Americano",
+			"subtext" : "Lattesso",
+			"img" : "images/coffee/coffee-7.png",
+			"price": "N150"
+		}],
+		"contents": [{
+			"name": "Espresso",
+			"subtext" : "Lattes",
+			"img" : "images/coffee/coffee-3.png",
+			"price": "N250"
+		}],
+		"contents": [{
+			"name": "Robusta",
+			"subtext" : "Coffee 4",
+			"img" : "images/coffee/coffee-4.png",
+			"price": "N300"
+		}],
+		"contents": [{
+			"name": "Café Latte",
+			"subtext" : "Macchiatos",
+			"img" : "images/coffee/coffee-5.png",
+			"price": "N350"
+		}]
+		},
+
+		{
+			"name" :  "Americanno",
+			"contents" : [{
+				"name": "Flat White",
+				"subtext" : "Coffee 6",
+				"img" : "images/coffee/coffee-6.png",
+				"price": "N400"
+			}],
+			"contents" : [{
+				"name": "Hort Macchiato",
+				"subtext" : "Dollop",
+				"img" : "images/coffee/coffee-7.png",
+				"price": "N450"
+			}],
+			"contents" : [{
+				"name": "Affogato",
+				"subtext" : "Coffee 8",
+				"img" : "images/coffee/coffee-8.png",
+				"price": "N500"
+			}],
+			"contents" : [{
+				"name": "Mocha",
+				"subtext" : "Coffee 9",
+				"img" : "images/coffee/coffee-9.png",
+				"price": "N550"
+			}],
+			"contents" : [{
+				"name": "Ristretto",
+				"subtext" : "Coffee 10",
+				"img" : "images/coffee/coffee-10.png",
+				"price": "N600"
+			}]
+		}
+
+	]
+}
+

@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:coffeetest/Screen/MyHomePage.dart';
 import 'package:coffeetest/category_model.dart';
 import 'package:coffeetest/coffee_card.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:coffeetest/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeView extends StatefulWidget {
   @override

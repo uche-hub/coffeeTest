@@ -1,4 +1,5 @@
 
+import 'package:coffeetest/Screen/MyHomePage.dart';
 import 'package:flutter/material.dart';
 
 import 'Screen/HomeView.dart';
@@ -17,7 +18,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: HomeView()
+      initialRoute: HomeScreen.routeName,
+      routes: {
+        HomeScreen.routeName: (context) => HomeScreen(),
+        DetailScreen.routeName: (context) => DetailScreen(),
+        CheckOutScreen.routeName: (context) => CheckOutScreen(),
+      },
     );
   }
 }

@@ -1,13 +1,12 @@
 import 'dart:convert';
 
 import 'package:coffeetest/Screen/MyHomePage.dart';
-import 'package:coffeetest/category_model.dart';
 import 'package:coffeetest/main.dart';
 import 'package:coffeetest/models/cafe.dart';
+import 'package:coffeetest/models/category.dart';
 import 'package:coffeetest/models/coffee.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
@@ -33,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   Future<String> _loadAsset() async {
     return await Future.delayed(
-        const Duration(seconds: 3), () => rootBundle.loadString('cafe.json'));
+        const Duration(seconds: 3), () => rootBundle.loadString('coffeeitem.json'));
   }
 
 
@@ -48,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen>
           builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
             if (snapshot.hasData) {
               _cafe = Cafe.fromJson(json.decode(snapshot.data));
-              _category = _cafe.categories[_categoryIndex] as Category;
+              _category = _cafe.categories[_categoryIndex];
               _coffeeList = _cafe.categories[_categoryIndex].coffeeList;
 
               return Column(
